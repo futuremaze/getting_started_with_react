@@ -8,15 +8,14 @@ export default class Layout extends React.Component {
         super();
         this.state = { title: "Welcome" };
     }
+    changeTitle(title) {
+        // this.setState({title}); という書き方はES6 の書き方で、this.setState({title: title}); と同じ意味
+        this.setState({ title });
+    }
     render() {
-        setTimeout(
-            () => { this.setState({ title: "Welcome Tsutomu!" }); },
-            2000
-        );
         return (
             <div>
-                <Header title={this.state.title} />
-                <Header title={"Thank you"} />
+                <Header changeTitle={this.changeTitle.bind(this)} title={this.state.title} />
                 <Footer />
             </div>
         );
